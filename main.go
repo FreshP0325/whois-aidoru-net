@@ -34,7 +34,7 @@ func checkdomainnameserver(domain string) string {
 	returnhtml := ""
 	whoiscontent := whoisquery("ianawhois.vip.icann.org", domain)
 	if strings.Contains(whoiscontent, "0 objects") {
-		returnhtml = "May be you enter the wrong domain?\n"
+		returnhtml = "I think it's not a valid format.\n"
 		return returnhtml
 	}
 	//fmt.Println(whoiscontent)
@@ -102,7 +102,7 @@ func checkdomainnameserver(domain string) string {
 
 		// }
 	} else {
-		returnhtml += "The domain has no nameserver, check whois status.\n"
+		returnhtml += "The domain has no nameserver, check whois status instead.\n"
 	}
 	//}
 
@@ -208,10 +208,10 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 
 			if globalwhoisserver == "" || globalwhoisserver == "ianawhois.vip.icann.org" {
 				if strings.Contains(whoiscontent, "0 objects") {
-					returnhtml = "May be you enter the wrong domain?\n"
+					returnhtml = "I think it's not a valid format.\n"
 					log.Println(domain + " wrong domain")
 				} else {
-					returnhtml = "There is no whois server for this domain tld\n"
+					returnhtml = "There is no whois server for this tld.\n"
 					returnhtml += checkdomainnameserver(domain)
 					returnhtml += whoiscontent
 					//fmt.Println(nserverre.FindAllString(whoiscontent, -1)) //-1表示返回所有匹配的值，[ar an al]
@@ -224,10 +224,9 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 	} else {
-		returnhtml = "err get domain.ex:zhufan.net"
+		returnhtml = "Nothing more but aidoru.net."
 	}
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	w.Header().Set("X-Powered-By", "https://33.al")
 	returnhtml = strings.ReplaceAll(returnhtml, "\n", "<br>")
 
 	for _, ip := range whois_config.Ips {
