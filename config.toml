@@ -1,3 +1,2 @@
 port = "8080"
-front = "https://whois.ip.sy"
-ip = ["x.x.x.x","x.x.x.x."]
+front = "https://whois.aidoru.net"
