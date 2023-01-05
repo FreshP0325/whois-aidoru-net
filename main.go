@@ -73,6 +73,7 @@ func checkdomainnameserver(domain string) string {
 	log.Println(nserversingle, domain)
 	//log.Println(r)
 	returnhtml += "Related records:\n"
+	returnhtml += "---------------------\n"
 	if len(r.Answer) > 0 {
 		for _, domainanswer := range r.Answer {
 			returnhtml += domainanswer.String() + "\n"
@@ -219,7 +220,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			} else {
 				returnhtml = checkdomainnameserver(domain)
-				returnhtml += "Answers from " + globalwhoisserver + "\n----------------------------------\n" + strings.Trim(whoiscontent, "\n")
+				returnhtml += "Answers from " + globalwhoisserver + "\n---------------------\n" + strings.Trim(whoiscontent, "\n")
 			}
 		}
 
