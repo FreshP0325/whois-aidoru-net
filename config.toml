@@ -1,2 +1,2 @@
 port = "8080"
-front = "https://whois-lookup.aidoru.net"
+front = "https://lookup.aidoru.net"
